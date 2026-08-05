@@ -1,17 +1,11 @@
-.portfolio-grid {
-
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 25px;
-
+.container {
+    width: 50%;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.project img {
-
-    width: 100%;
-
-    display: block;
-
+.img {
+  text-align: center;
+    width: 80vw;
+    margin-left: calc(50% - 40vw);
 }
