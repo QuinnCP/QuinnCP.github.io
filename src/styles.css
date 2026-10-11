@@ -1,0 +1,347 @@
+:root {
+  font-family: Inter, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  color: #221f1c;
+  background: #f6f2eb;
+  font-weight: 400;
+  color-scheme: light;
+  --canvas-bg: #fdfaf4;
+  --panel-bg: rgba(255, 255, 255, 0.7);
+  --panel-border: rgba(42, 37, 35, 0.18);
+  --ink: #221f1c;
+  --muted: #655d59;
+  --soft: #d8cab4;
+  --tint: #c97c58;
+  --shape-fill: #f1e4d1;
+  --shape-stroke: #2f2a28;
+  --handle: #a75e3d;
+  --handle-active: #7a3d2b;
+  --guide: rgba(42, 37, 35, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  min-height: 100%;
+  min-width: 0;
+  background: var(--canvas-bg);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--ink);
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.page-shell {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 32px 24px 40px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.brand-kicker {
+  margin: 0 0 6px;
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.brand-block h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.button {
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: transparent;
+  padding: 0.7rem 1.1rem;
+  font-weight: 600;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button.primary {
+  background: var(--ink);
+  color: #f8f5f1;
+  border-color: var(--ink);
+}
+
+.button.secondary {
+  background: rgba(201, 124, 88, 0.08);
+  border-color: rgba(201, 124, 88, 0.22);
+}
+
+.button.ghost {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.button.small {
+  padding: 0.55rem 0.9rem;
+  font-size: 0.85rem;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(308px, 420px);
+  gap: 24px;
+  padding-top: 24px;
+}
+
+.editor-card,
+.control-panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 28px;
+}
+
+.editor-card {
+  padding: 18px 18px 12px;
+}
+
+.canvas-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding: 2px 4px;
+}
+
+.inline-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(201, 124, 88, 0.09);
+  border: 1px solid rgba(201, 124, 88, 0.18);
+  color: var(--muted);
+  padding: 0.35rem 0.7rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.canvas-meta {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.design-canvas {
+  width: 100%;
+  height: clamp(360px, 58vw, 620px);
+  border-radius: 20px;
+  background: linear-gradient(180deg, #f9f3ea, #f3ede2);
+  border: 1px solid rgba(42, 37, 35, 0.1);
+  touch-action: none;
+}
+
+.canvas-background {
+  fill: #f9f3ea;
+}
+
+.rib-shape {
+  fill: var(--shape-fill);
+  stroke: var(--shape-stroke);
+  stroke-width: 2.2;
+  stroke-linejoin: round;
+}
+
+.guide-line {
+  stroke: var(--guide);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 5;
+}
+
+.drag-handle {
+  fill: #f7efe5;
+  stroke: var(--handle);
+  stroke-width: 2;
+  cursor: grab;
+  transition: transform 0.12s ease;
+}
+
+.drag-handle.active {
+  fill: #f6d8c1;
+  stroke: var(--handle-active);
+  stroke-width: 2.5;
+}
+
+.endpoint {
+  fill: rgba(42, 37, 35, 0.78);
+}
+
+.control-panel {
+  padding: 22px 18px 18px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 1.28rem;
+}
+
+.controls-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.input-row {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.input-shell {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  padding: 0 14px;
+}
+
+.input-shell input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  padding: 0.85rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  outline: none;
+}
+
+.input-shell input::-webkit-outer-spin-button,
+.input-shell input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-shell input[type='number'] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.unit {
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.status-box {
+  margin-top: 18px;
+  padding: 0.95rem 1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid var(--panel-border);
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.design-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.design-summary > div {
+  padding: 0.9rem 0.9rem 0.7rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(42, 37, 35, 0.08);
+}
+
+.design-summary dt {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.design-summary dd {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 960px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .banner-actions {
+    width: 100%;
+  }
+
+  .banner-actions .button {
+    flex: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-shell {
+    padding: 18px 14px 28px;
+  }
+
+  .button {
+    padding: 0.7rem 0.9rem;
+  }
+
+  .editor-card,
+  .control-panel {
+    border-radius: 20px;
+  }
+
+  .design-summary {
+    grid-template-columns: 1fr;
+  }
+}
